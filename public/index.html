@@ -31,5 +31,10 @@
         </div>
       </div>
     </div>
+    <script type='text/javascript'>
+      // HTML要素が読み込まれる前にスクリプトを実行しないために追加
+      // appOnReadyにカッコをつけていないのは、参照しているだけだから（appOnReady()にしてしまうと、参照ではなく実行してしまう）
+      $(window).ready(learnjs.appOnReady);
+    </script>
   </body>
 </html>

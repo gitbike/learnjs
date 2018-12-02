@@ -17,6 +17,7 @@ gulp.task('bs-reload', function () {
 });
 
 gulp.task('default', ['browser-sync'], function () {
-  gulp.watch('./public/*.html', ['bs-reload']);
+  gulp.watch('./public/index.html', ['bs-reload']);
   gulp.watch('./public/tests/app_spec.js', ['bs-reload']);
+  gulp.watch('./public/app.js', ['bs-reload']);
 });
