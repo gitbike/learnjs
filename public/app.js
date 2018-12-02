@@ -2,13 +2,14 @@
 // グローバルのwindowオブジェクトやライブラリとの名前衝突を避けるため、名前空間を作成
 const learnjs = {};
 
-learnjs.problemView = function () {
-  return $('<div class="problem-view">').text('Coming soon!');
+learnjs.problemView = function (problemNumber) {
+  const title = 'Problem #' + problemNumber + ' Coming soon!';
+  return $('<div class="problem-view">').text(title);
 }
 
 learnjs.showView = function (hash) {
   const routes = {
-    '#problem-1': learnjs.problemView
+    '#problem': learnjs.problemView
   };
   const hashParts = hash.split('-');
   const viewFn = routes[hashParts[0]];
