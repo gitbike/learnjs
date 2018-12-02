@@ -4,15 +4,15 @@ const learnjs = {};
 
 learnjs.problemView = function () {
   return $('<div class="problem-view">').text('Coming soon!');
-  
 }
 
 learnjs.showView = function (hash) {
   const routes = {
     '#problem-1': learnjs.problemView
   };
-  const viewFn = routes[hash];
+  const hashParts = hash.split('-');
+  const viewFn = routes[hashParts[0]];
   if (viewFn) {
-    $('.view-container').empty().append(viewFn());
+    $('.view-container').empty().append(viewFn(hashParts[1]));
   }
 }
