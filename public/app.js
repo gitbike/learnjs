@@ -5,7 +5,7 @@ const learnjs = {};
 learnjs.problemView = function (problemNumber) {
   const title = 'Problem #' + problemNumber + ' Coming soon!';
   return $('<div class="problem-view">').text(title);
-}
+};
 
 learnjs.showView = function (hash) {
   const routes = {
@@ -16,8 +16,11 @@ learnjs.showView = function (hash) {
   if (viewFn) {
     $('.view-container').empty().append(viewFn(hashParts[1]));
   }
-}
+};
 
 learnjs.appOnReady = function () {
+  window.onhashchange = function () {
+    learnjs.showView(window.location.hash);
+  };
   learnjs.showView(window.location.hash);
 };
