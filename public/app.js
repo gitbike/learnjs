@@ -18,8 +18,28 @@ const learnjs = {};
 learnjs.problemView = function (data) {
   const problemNumber = parseInt(data, 10);
   const view = $('.templates .problem-view').clone();
+  const problemData = learnjs.problems[problemNumber - 1];
+  const resultFlash = view.find('.result');
+
+  function checkAnswer() {
+    const answer = view.find('.answer').val();
+    const test = problemData.code.replace('__', answer) + '; problem();';
+    return eval(test);
+  }
+
+  function checkAnswerClick() {
+    if (checkAnswer()) {
+      resultFlash.text('Correct!');
+    } else {
+      resultFlash.text('Incorrect!');
+    }
+    // フォームの送信を防ぐため、click()にfalseを返す
+    return false;
+  }
+
+  view.find('.check-btn').click(checkAnswerClick);
   view.find('.title').text('Problem #' + problemNumber);
-  learnjs.applyObject(learnjs.problems[problemNumber - 1], view);
+  learnjs.applyObject(problemData, view);
   return view;
 };
 
@@ -42,7 +62,7 @@ learnjs.appOnReady = function () {
 };
 
 learnjs.applyObject = function (obj, elem) {
-  for (let key in obj) {
+  for (var key in obj) {
     elem.find('[data-name="' + key + '"]').text(obj[key]);
   }
 };
