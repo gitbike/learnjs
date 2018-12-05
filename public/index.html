@@ -11,15 +11,18 @@
     <script src='/app.js'></script>
     <style type="text/css" media="all">
       body { margin-top: 30px; }
-    </style>
-    <style type="text/css" media="all">
-      body { margin-top: 30px; }
       .templates { display: none; }
     </style>
   </head>
   <body>
     <!-- tests/SpecHelper.jsを有効化するためのmarkupクラス -->
     <div class="markup">
+      <div class="nav-container no-select fixed-top u-full-width">
+        <ul class="inline-list hover-links nav-list six columns">
+          <ul><a href="#" class="text-lg">LearnJS</a></ul>
+          <ul><a href="#problem-1">Start</a></ul>
+        </ul>
+      </div>
       <!-- View関数がハッシュに対応したビューに書き換えるようにするため、view-containerクラスを追加 -->
       <div class='view-container container'>
       </div>
