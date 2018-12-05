@@ -29,9 +29,11 @@ learnjs.problemView = function (data) {
 
   function checkAnswerClick() {
     if (checkAnswer()) {
-      resultFlash.text('Correct!');
+      const correctFlash = learnjs.template('correct-flash');
+      correctFlash.find('a').attr('href', '#problem-' + (problemNumber + 1));
+      learnjs.flashElement(resultFlash, correctFlash);
     } else {
-      resultFlash.text('Incorrect!');
+      learnjs.flashElement(resultFlash, 'Incorrect!');
     }
     // フォームの送信を防ぐため、click()にfalseを返す
     return false;
@@ -66,3 +68,14 @@ learnjs.applyObject = function (obj, elem) {
     elem.find('[data-name="' + key + '"]').text(obj[key]);
   }
 };
+
+learnjs.flashElement = function (elem, content) {
+  elem.fadeOut('fast', function () {
+    elem.html(content);
+    elem.fadeIn();
+  });
+};
+
+learnjs.template = function (name) {
+  return $('.templates .' + name).clone();
+}
