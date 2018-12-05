@@ -79,3 +79,16 @@ learnjs.flashElement = function (elem, content) {
 learnjs.template = function (name) {
   return $('.templates .' + name).clone();
 }
+
+// テストしやすくするため、checkAnswerボタンクリックハンドから抽出
+learnjs.buildCorrectFlash = function (problemNum) {
+  const correctFlash = learnjs.template('correct-flash');
+  const link = correctFlash.find('a');
+  if (problemNum < learnjs.problems.length) {
+    link.attr('href', '#problem-' + (problemNum + 1));
+  } else {
+    link.attr('href', '');
+    link.text("You're Finished!");
+  }
+  return correctFlash;
+}
