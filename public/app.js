@@ -81,6 +81,7 @@ learnjs.template = function (name) {
   return $('.templates .' + name).clone();
 }
 
+// ランディングページをroutesに追加するためのビュー関数 アプリロード時のフラッシュが消え、戻るボタンが機能するようになる
 learnjs.landingView = function () {
   return learnjs.template('landing-view');
 }
