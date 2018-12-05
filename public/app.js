@@ -47,7 +47,8 @@ learnjs.problemView = function (data) {
 
 learnjs.showView = function (hash) {
   const routes = {
-    '#problem': learnjs.problemView
+    '#problem': learnjs.problemView,
+    '': learnjs.landingView,
   };
   const hashParts = hash.split('-');
   const viewFn = routes[hashParts[0]];
@@ -78,6 +79,10 @@ learnjs.flashElement = function (elem, content) {
 
 learnjs.template = function (name) {
   return $('.templates .' + name).clone();
+}
+
+learnjs.landingView = function () {
+  return learnjs.template('landing-view');
 }
 
 // テストしやすくするため、checkAnswerボタンクリックハンドから抽出
