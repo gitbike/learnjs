@@ -1,6 +1,8 @@
 'use strict';
 // グローバルのwindowオブジェクトやライブラリとの名前衝突を避けるため、名前空間を作成
-const learnjs = {};
+const learnjs = {
+  poolId: 'us-east-1:32afbf50-276f-4f06-aa40-4d8eef024633'
+};
 
 //source[learnjs/public/app.js] {
 learnjs.problems = [
@@ -120,12 +122,23 @@ learnjs.triggerEvent = function (name, args) {
 function googleSignIn(googleUser) {
   const id_token = googleUser.getAuthResponse().id_token;
   AWS.config.Update({
-    region: 'us-east-1:32afbf50-276f-4f06-aa40-4d8eef024633',
+    region: 'us-east-1',
     credentials: new AWS.CognitoIdentityCredentials({
       IdentityPoolId: learnjs.poolId,
       Logins: {
         'accounts.google.com': id_token
       }
     })
+  });
+}
+
+function refresh() {
+  return gapi.auth2.getAuthInstance().signIn({
+    prompt: 'login'
+  }).then(function (UserUpdate) {
+    const creds = AWS.config.credentials;
+    const newToken = userUpdate.getAuthResponse().id_token;
+    creds.params.Logins['accounts.google.com'] = newToken;
+    return learnjs.awsRefresh();
   });
 }
