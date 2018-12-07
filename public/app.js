@@ -116,3 +116,16 @@ learnjs.buildCorrectFlash = function (problemNum) {
 learnjs.triggerEvent = function (name, args) {
   $('.view-container > *').trigger(name, args);
 };
+
+function googleSignIn(googleUser) {
+  const id_token = googleUser.getAuthResponse().id_token;
+  AWS.config.Update({
+    region: 'us-east-1:32afbf50-276f-4f06-aa40-4d8eef024633',
+    credentials: new AWS.CognitoIdentityCredentials({
+      IdentityPoolId: learnjs.poolId,
+      Logins: {
+        'accounts.google.com': id_token
+      }
+    })
+  });
+}

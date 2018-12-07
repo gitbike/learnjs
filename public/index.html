@@ -40,7 +40,14 @@
       .text-lg {
         font-size: 32px;
       }
+      .navbar-padding {
+        padding-top: 7px;
+        display: inline-block;
+      }
     </style>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id" content="745641211655-vak4fs4cvv435med2f33ru2knket23uq.apps.googleusercontent.com">
+
   </head>
   <body>
     <!-- tests/SpecHelper.jsを有効化するためのmarkupクラス -->
@@ -50,6 +57,11 @@
           <li><a href="#" class="text-lg">LearnJS</a></li>
           <li><a href="#problem-1">Start</a></li>
         </ul>
+        <div class="four columns">
+          <span class="navbar-padding u-pull-right">
+            <span class="g-signin2" data-on-success="googleSignIn"></span>
+          </span>
+        </div>
       </div>
       <!-- View関数がハッシュに対応したビューに書き換えるようにするため、view-containerクラスを追加 -->
       <div class='view-container container'>
