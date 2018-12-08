@@ -142,3 +142,15 @@ function refresh() {
     return learnjs.awsRefresh();
   });
 }
+
+learnjs.awsRefresh = function () {
+  const deferred = new $.Deferred();
+  AWS.config.credentials.refresh(function (err) {
+    if (err) {
+      deferred.reject(err);
+    } else {
+      deferred.resolve(AWS.config.credentials.identityId);
+    }
+  });
+  return defferred.promise();
+}
