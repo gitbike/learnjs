@@ -135,7 +135,7 @@ function googleSignIn(googleUser) {
 function refresh() {
   return gapi.auth2.getAuthInstance().signIn({
     prompt: 'login'
-  }).then(function (UserUpdate) {
+  }).then(function (userUpdate) {
     const creds = AWS.config.credentials;
     const newToken = userUpdate.getAuthResponse().id_token;
     creds.params.Logins['accounts.google.com'] = newToken;
@@ -152,5 +152,5 @@ learnjs.awsRefresh = function () {
       deferred.resolve(AWS.config.credentials.identityId);
     }
   });
-  return defferred.promise();
-}
+  return deferred.promise();
+};
