@@ -44,6 +44,10 @@
         padding-top: 7px;
         display: inline-block;
       }
+      .navbar-padding-lg {
+        padding-top: 7px;
+        display: inline-block;
+      }
     </style>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <meta name="google-signin-client_id" content="745641211655-vak4fs4cvv435med2f33ru2knket23uq.apps.googleusercontent.com">
@@ -57,16 +61,22 @@
           <li><a href="#" class="text-lg">LearnJS</a></li>
           <li><a href="#problem-1">Start</a></li>
         </ul>
-        <div class="four columns">
+
+        <div class="four columns signin-bar">
           <span class="navbar-padding u-pull-right">
-            <span class="g-signin2" data-on-success="googleSignIn"></span>
+            <span class="g-signin2" data-onsuccess="googleSignIn"></span>
           </span>
         </div>
       </div>
+
       <!-- View関数がハッシュに対応したビューに書き換えるようにするため、view-containerクラスを追加 -->
       <div class='view-container container'>
       </div>
+
       <div class="templates">
+        <div class="profile-link navbar-padding-lg">
+          <a href="#profile"></a>
+        </div>
         <div class="landing-view">
           <div class="row">
             <div class="one-half column">
@@ -78,6 +88,12 @@
             </div>
           </div>
         </div>
+
+        <div class="profile-view">
+            <h3>Your Profile</h3>
+            <div class="email"></div>
+        </div>
+
         <div class="problem-view">
           <h3 class="title"></h3>
           <p data-name="description"></p>
@@ -90,14 +106,17 @@
             </div>
           </form>
         </div>
+
         <li class="skip-btn">
           <a>Skip This Problem</a>
         </li>
+
         <div class="correct-flash">
           <span>Correct!</span> <a>Next Problem</a>
         </div>
       </div>
-    </div>
+    </div>  
+
     <script type='text/javascript'>
       // HTML要素が読み込まれる前にスクリプトを実行しないために追加
       // appOnReadyにカッコをつけていないのは、参照しているだけだから（appOnReady()にしてしまうと、参照ではなく実行してしまう）
